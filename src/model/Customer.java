@@ -8,15 +8,12 @@ public class Customer {
     private String location;
 
     public Customer(int id, String name, String email, String phone, String location) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.location = location;
     }
-
-//    public Customer(int id, String name, String email, String phone, String location) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.phone = phone;
-//        this.location = location;
-//    }
 
     public String getName() {
         return name;

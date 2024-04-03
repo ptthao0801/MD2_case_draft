@@ -92,7 +92,18 @@ public class CustomerController implements Action {
     public void search() {
         System.out.println("------SEARCH------");
         System.out.println("Enter ID or Name: ");
-
+        String searchItem = scanner.nextLine();
+        boolean found = false;
+        for (Customer customer: customers) {
+            if (String.valueOf(customer.getId()).equals(searchItem) || customer.getName().equalsIgnoreCase(searchItem)) {
+                System.out.println("FOUND! " + customer);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("CUSTOMER NOT FOUND!");
+        }
     }
 
     @Override

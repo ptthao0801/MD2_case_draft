@@ -1,6 +1,7 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Action;
 
 public class StoreController implements Action, ValidationTool {
     @Override

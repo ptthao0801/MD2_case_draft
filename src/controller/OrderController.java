@@ -1,16 +1,13 @@
 package controller;
 
 import controller.validation.ValidationTool;
-import model.Customer;
+import model.Action;
 import model.Order;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-import static controller.validation.ValidationTool.emailValidation;
-import static controller.validation.ValidationTool.phoneValidation;
 
 public class OrderController implements Action, ValidationTool {
     Scanner scanner = new Scanner(System.in);

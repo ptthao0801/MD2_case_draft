@@ -1,6 +1,7 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Action;
 import model.Product;
 
 import java.util.ArrayList;

@@ -1,7 +1,11 @@
 package view;
 
 import controller.CustomerController;
+import controller.OrderController;
+import model.Order;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StoreManager {
@@ -9,8 +13,18 @@ public class StoreManager {
         Scanner scanner = new Scanner(System.in);
 
         CustomerController customer = new CustomerController();
+        OrderController order = new OrderController();
 
-        customer.add();
+
+        // thuc thi customer
+//        customer.add();
+
+        // thuc thi Order
+
+        for (int i = 0; i < 3; i++) {
+            order.add();
+        }
+        order.display();
 
     }
 }

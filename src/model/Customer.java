@@ -1,15 +1,17 @@
 package model;
 
 public class Customer {
+    private int id;
     private String name;
     private String email;
     private int phone;
     private String location;
 
-    public Customer(String name, String email, String phone, String location) {
+    public Customer(int id, String name, String email, String phone, String location) {
     }
 
-    public Customer(String name, String email, int phone, String location) {
+    public Customer(int id, String name, String email, int phone, String location) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -48,10 +50,19 @@ public class Customer {
         this.location = location;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", location='" + location + '\'' +

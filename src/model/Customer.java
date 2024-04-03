@@ -4,19 +4,19 @@ public class Customer {
     private int id;
     private String name;
     private String email;
-    private int phone;
+    private String phone;
     private String location;
 
     public Customer(int id, String name, String email, String phone, String location) {
     }
 
-    public Customer(int id, String name, String email, int phone, String location) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.location = location;
-    }
+//    public Customer(int id, String name, String email, String phone, String location) {
+//        this.id = id;
+//        this.name = name;
+//        this.email = email;
+//        this.phone = phone;
+//        this.location = location;
+//    }
 
     public String getName() {
         return name;
@@ -34,11 +34,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

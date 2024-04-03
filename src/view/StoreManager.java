@@ -2,6 +2,7 @@ package view;
 
 import controller.CustomerController;
 import controller.OrderController;
+import model.Customer;
 import model.Order;
 
 import java.util.ArrayList;
@@ -17,14 +18,18 @@ public class StoreManager {
 
 
         // thuc thi customer
-//        customer.add();
+        customer.add();
+//        customer.display();
+
 
         // thuc thi Order
 
-        for (int i = 0; i < 3; i++) {
-            order.add();
-        }
-        order.display();
+//        for (int i = 0; i < 1; i++) {
+//            order.add();
+//        }
+//        order.display();
+//        order.search();
+//        order.display();
 
     }
 }

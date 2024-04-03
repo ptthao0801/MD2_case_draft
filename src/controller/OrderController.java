@@ -17,6 +17,7 @@ public class OrderController implements Action, ValidationTool {
     List<Order> orders = new ArrayList<>();
     @Override
     public void display() {
+        System.out.println("------DISPLAY------");
         Collections.sort(orders);
         for (Order order:orders){
             System.out.println(order);
@@ -25,12 +26,17 @@ public class OrderController implements Action, ValidationTool {
 
     @Override
     public void add() {
+        System.out.println("------ADD------");
         System.out.println("Enter ID: ");
         int id;
-        while (true){
-            id = Integer.parseInt(scanner.nextLine());
-            if (ValidationTool.idValidation(id)){
-                break;
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                if (ValidationTool.idValidation(id)) {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. ID must be a number. Please re-enter: ");
             }
         }
         System.out.println("Enter name: ");
@@ -66,21 +72,54 @@ public class OrderController implements Action, ValidationTool {
 
     @Override
     public void remove() {
+        System.out.println("------REMOVE------");
+        System.out.println("Remove this ID: ");
+        while (true){
+            boolean isAvailable = false;
+            int id = scanner.nextInt();
+            for (Order order:orders){
+                if (order.getIdOrder()==id){
+                    isAvailable = true;
+                    orders.remove(order);
+                    break;
+                }
+            }
+            if(isAvailable){
+                System.out.println("ORDER ID "+id+" HAS BEEN REMOVED SUCCESSFULLY!");
+            } else {
+                System.out.println("ORDER ID NOT FOUND! Please re-enter: ");
+            }
+        }
 
     }
 
     @Override
     public void search() {
-
+        System.out.println("------SEARCH------");
+        System.out.println("Enter ID or Name: ");
+        String searchItem = scanner.nextLine();
+        boolean found = false;
+        for (Order order : orders) {
+            if (String.valueOf(order.getIdOrder()).equals(searchItem) || order.getProductName().equalsIgnoreCase(searchItem)) {
+                System.out.println("FOUND! " + order);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("ORDER NOT FOUND!");
+        }
     }
 
     @Override
     public void writeToFile() {
+        System.out.println("------WRITE TO FILE------");
 
     }
 
     @Override
     public void readFromFile() {
+        System.out.println("------READ FROM FILE------");
 
     }
 

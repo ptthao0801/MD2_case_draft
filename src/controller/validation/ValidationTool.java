@@ -16,29 +16,24 @@ public interface ValidationTool {
 
      static boolean emailValidation(String email){
         Matcher emailMatcher = emailPattern.matcher(email);
-        return emailMatcher.matches();
+        boolean isValid = emailMatcher.matches();
+        return isValid;
     }
      static boolean phoneValidation(String phone){
-        Matcher phoneMatcher = phonePattern.matcher(phone);
-        return phoneMatcher.matches();
+         Matcher phoneMatcher = phonePattern.matcher(phone);
+         boolean isValid = phoneMatcher.matches();
+         return isValid;
     }
-    static boolean idValidation(int id){
-         boolean idValid = false;
-        while (true) {
-            try {
-                if (id > 0) {
-                    idValid = true;
-                    break;
-                } else {
-                    System.out.println("ID must be a positive number. Please re-enter: ");
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. ID must be a number. Please re-enter: ");
+    static boolean idValidation(int id) {
+        boolean idValid = false;
+            if (id > 0) {
+                idValid = true;
+            } else {
+                System.out.println("ID must be a positive number. Please re-enter: ");
             }
-        }
-        return idValid;
+            return idValid;
     }
+
     static boolean priceValidation(double price){
         boolean priceValid = false;
         while (true) {

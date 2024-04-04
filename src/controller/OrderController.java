@@ -1,7 +1,6 @@
 package controller;
 
 import controller.validation.ValidationTool;
-import model.Action;
 import model.Order;
 
 import java.util.ArrayList;
@@ -9,12 +8,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class OrderController implements Action, ValidationTool {
+public class OrderController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Order> orders = new ArrayList<>();
     @Override
     public void display() {
-        System.out.println("------DISPLAY------");
+        System.out.println("------DISPLAY ORDER------");
         Collections.sort(orders);
         for (Order order:orders){
             System.out.println(order);
@@ -23,7 +22,7 @@ public class OrderController implements Action, ValidationTool {
 
     @Override
     public void add() {
-        System.out.println("------ADD------");
+        System.out.println("------ADD ORDER------");
         System.out.println("Enter ID: ");
         int id;
         while (true) {
@@ -69,7 +68,7 @@ public class OrderController implements Action, ValidationTool {
 
     @Override
     public void remove() {
-        System.out.println("------REMOVE------");
+        System.out.println("------REMOVE ORDER------");
         System.out.println("Remove this ID: ");
         while (true){
             boolean isAvailable = false;
@@ -87,12 +86,11 @@ public class OrderController implements Action, ValidationTool {
                 System.out.println("ORDER ID NOT FOUND! Please re-enter: ");
             }
         }
-
     }
 
     @Override
     public void search() {
-        System.out.println("------SEARCH------");
+        System.out.println("------SEARCH ORDER------");
         System.out.println("Enter ID or Name: ");
         String searchItem = scanner.nextLine();
         boolean found = false;

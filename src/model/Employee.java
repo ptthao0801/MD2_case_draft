@@ -4,9 +4,6 @@ public class Employee {
     private String id;
     private String role;
 
-    public Employee() {
-    }
-
     public Employee(String id,String role) {
         this.id = id;
         this.role = role;

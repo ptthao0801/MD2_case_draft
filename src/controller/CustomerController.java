@@ -1,7 +1,6 @@
 package controller;
 
 import controller.validation.ValidationTool;
-import model.Action;
 import model.Customer;
 
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import java.util.Scanner;
 import static controller.validation.ValidationTool.emailValidation;
 import static controller.validation.ValidationTool.phoneValidation;
 
-public class CustomerController implements Action {
+public class CustomerController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Customer> customers = new ArrayList<>();
     @Override
     public void add() {
-        System.out.println("------ADD------");
+        System.out.println("------ADD CUSTOMER------");
         System.out.println("Enter ID: ");
         int id;
         while (true) {
@@ -24,14 +23,11 @@ public class CustomerController implements Action {
                 id = Integer.parseInt(scanner.nextLine());
                 if (ValidationTool.idValidation(id)) {
                     break;
-                } else {
-                    System.out.println("ID must be a positive number. Please re-enter: ");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. ID must be a number. Please re-enter: ");
             }
         }
-
 
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
@@ -68,7 +64,7 @@ public class CustomerController implements Action {
 
     @Override
     public void remove() {
-        System.out.println("------REMOVE------");
+        System.out.println("------REMOVE CUSTOMER------");
         System.out.println("Remove this ID: ");
         while (true){
             boolean isAvailable = false;
@@ -90,7 +86,7 @@ public class CustomerController implements Action {
 
     @Override
     public void search() {
-        System.out.println("------SEARCH------");
+        System.out.println("------SEARCH CUSTOMER------");
         System.out.println("Enter ID or Name: ");
         String searchItem = scanner.nextLine();
         boolean found = false;
@@ -120,7 +116,7 @@ public class CustomerController implements Action {
 
     @Override
     public void display(){
-        System.out.println("------DISPLAY------");
+        System.out.println("------DISPLAY CUSTOMER------");
         for (Customer customer:customers){
             System.out.println(customer);
         }

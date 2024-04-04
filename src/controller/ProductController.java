@@ -1,20 +1,19 @@
 package controller;
 
 import controller.validation.ValidationTool;
-import model.Action;
 import model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProductController implements Action, ValidationTool {
+public class ProductController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Product> products = new ArrayList<>();
 
     @Override
     public void display() {
-        System.out.println("------DISPLAY------");
+        System.out.println("------DISPLAY PRODUCT------");
         for (Product product:products){
             System.out.println(product);
         }
@@ -22,7 +21,7 @@ public class ProductController implements Action, ValidationTool {
 
     @Override
     public void add() {
-        System.out.println("------ADD------");
+        System.out.println("------ADD PRODUCT------");
         System.out.println("Enter ID: ");
         int id;
         while (true) {
@@ -39,6 +38,7 @@ public class ProductController implements Action, ValidationTool {
         }
         System.out.println("Enter Name: ");
         String name = scanner.nextLine();
+        System.out.println("Enter Category: ");
         String category = scanner.nextLine();
         Product newProduct = new Product(id,name,category);
         products.add(newProduct);
@@ -48,7 +48,7 @@ public class ProductController implements Action, ValidationTool {
 
     @Override
     public void remove() {
-        System.out.println("------REMOVE------");
+        System.out.println("------REMOVE PRODUCT------");
         System.out.println("Remove this ID: ");
         while (true){
             boolean isAvailable = false;
@@ -70,7 +70,7 @@ public class ProductController implements Action, ValidationTool {
 
     @Override
     public void search() {
-        System.out.println("------SEARCH------");
+        System.out.println("------SEARCH PRODUCT------");
         System.out.println("Enter ID or Name: ");
         String searchItem = scanner.nextLine();
         boolean found = false;

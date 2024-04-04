@@ -2,9 +2,10 @@ package model;
 
 public abstract class Store {
     private int id;
-    private final String name = "ZARA";
+    public final String name = "ZARA";
     public Store() {
     }
+
     public Store(int id) {
         this.id = id;
     }

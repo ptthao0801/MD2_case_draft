@@ -1,6 +1,6 @@
-package model;
+package controller;
 
-public interface Action {
+public interface ActionForModel {
     void display();
     void add();
     void remove();

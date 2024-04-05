@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Order implements Comparable<Order>{
     private int idOrder;

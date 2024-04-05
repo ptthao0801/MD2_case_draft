@@ -4,6 +4,7 @@ import controller.menu.ActionForMenu;
 import model.StoreHCM;
 import model.StoreHN;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GreetingMenuController implements ActionForMenu {
@@ -20,21 +21,36 @@ public class GreetingMenuController implements ActionForMenu {
 
     @Override
     public void runBySelecTion() {
-        int selection = scanner.nextInt();
-        switch (selection){
-            case 0:
-                System.exit(0);
-                break;
-            case 1:
-                storeHN.greeting();
-                break;
-            case 2:
-                storeHCM.greeting();
-                break;
-            default:
+        boolean exit = false;
+        while (!exit)
+            try {
+                display();
+                int selection = Integer.parseInt(scanner.nextLine());
+                switch (selection) {
+                    case 0:
+                        System.exit(0);
+                        exit = true;
+                        break;
+                    case 1:
+                        storeHN.greeting();
+                        exit = true;
+                        break;
+                    case 2:
+                        storeHCM.greeting();
+                        exit = true;
+                        break;
+                    default:
+                        System.out.println("WARNING: INVALID OPTION. Please re-enter: ");
+                        break;
+                }
+            } catch (NumberFormatException ignored) {
                 System.out.println("WARNING: INVALID OPTION. Please re-enter: ");
-                break;
+            }
         }
     }
 
-}
+//    public static void main(String[] args) {
+//        GreetingMenuController greetingMenuController = new GreetingMenuController();
+//        greetingMenuController.runBySelecTion();
+//    }
+

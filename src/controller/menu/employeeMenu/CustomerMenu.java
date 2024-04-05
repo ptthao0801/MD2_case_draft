@@ -26,36 +26,40 @@ public class CustomerMenu implements ActionForMenu {
     public void runBySelecTion() {
         boolean exit = false;
         while (!exit){
-            display();
-        int selection = scanner.nextInt();
-        switch (selection){
-            case 0:
-                System.exit(0);
-                break;
-            case 1:
-                customer.display();
-                break;
-            case 2:
-                customer.add();
-                break;
-            case 3:
-                customer.remove();
-                break;
-            case 4:
-                customer.search();
-                break;
-            case 5:
-                customer.writeToFile();
-                break;
-            case 6:
-                customer.readFromFile();
-                break;
-            case 7:
-                exit = true;
-                break;
-            default:
-                System.out.println("WARNING: INVALID OPTION. Please re-enter: ");
-        }
+            try{
+                display();
+                int selection = Integer.parseInt(scanner.nextLine());
+                switch (selection){
+                    case 0:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        customer.display();
+                        break;
+                    case 2:
+                        customer.add();
+                        break;
+                    case 3:
+                        customer.remove();
+                        break;
+                    case 4:
+                        customer.search();
+                        break;
+                    case 5:
+                        customer.writeToFile();
+                        break;
+                    case 6:
+                        customer.readFromFile();
+                        break;
+                    case 7:
+                        exit = true;
+                        break;
+                    default:
+                        System.out.println("WARNING: INVALID OPTION. Please re-enter: ");
+                }
+            } catch (NumberFormatException ignored){
+                System.out.println("WARNING: Invalid option. Please re-enter: ");
+            }
         }
     }
 }

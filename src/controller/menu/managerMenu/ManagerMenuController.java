@@ -24,27 +24,31 @@ public class ManagerMenuController implements ActionForMenu {
     @Override
     public void runBySelecTion() {
         while (true){
-            display();
-            int selection = Integer.parseInt(scanner.nextLine());
-            switch (selection){
-                case 0:
-                    System.exit(0);
-                    break;
-                case 1:
-                    employeeMenu.display();
-                    employeeMenu.runBySelecTion();
-                    break;
-                case 2:
-                    orderController.getOrderValueByIdList();
-                    break;
-                case 3:
-                    facade.getTop10Products();
-                    break;
-                case 4:
-                    break;
-                default:
-                    System.out.println("WARNING: Invalid option. Please re-enter: ");
-                    break;
+            try{
+                display();
+                int selection = Integer.parseInt(scanner.nextLine());
+                switch (selection){
+                    case 0:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        employeeMenu.display();
+                        employeeMenu.runBySelecTion();
+                        break;
+                    case 2:
+                        orderController.getOrderValueByIdList();
+                        break;
+                    case 3:
+                        facade.getTop10Products();
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("WARNING: Invalid option. Please re-enter: ");
+                        break;
+                }
+            } catch (NumberFormatException ignored){
+                System.out.println("WARNING: Invalid option. Please re-enter: ");
             }
         }
     }

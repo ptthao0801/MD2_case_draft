@@ -12,7 +12,7 @@ public class ProductController implements ActionForModel, ValidationTool {
     List<Product> products = new ArrayList<>();
     public ProductController(){
         products.add(new Product(1, "Apple","bycicle"));
-        products.add(new Product(2, "Electroluc","phone"));
+        products.add(new Product(2, "Electrolux","phone"));
         products.add(new Product(3, "Toshiba","fridge"));
         products.add(new Product(4, "Sharp","TV"));
         products.add(new Product(5, "LG","laptop"));
@@ -57,7 +57,8 @@ public class ProductController implements ActionForModel, ValidationTool {
     public void remove() {
         System.out.println("------REMOVE PRODUCT------");
         System.out.println("Remove this ID: ");
-        while (true){
+        boolean exit = false;
+        while (!exit){
             boolean isAvailable = false;
             int id = scanner.nextInt();
             for (Product product:products){
@@ -69,6 +70,7 @@ public class ProductController implements ActionForModel, ValidationTool {
             }
             if(isAvailable){
                 System.out.println("PRODUCT ID "+id+" HAS BEEN REMOVED SUCCESSFULLY!");
+                exit = true;
             } else {
                 System.out.println("PRODUCT ID NOT FOUND! Please re-enter: ");
             }

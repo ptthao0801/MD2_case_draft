@@ -15,13 +15,13 @@ public class StoreManager {
 
         EmployeeMenuController eMenu = new EmployeeMenuController();
         ManagerMenuController mMenu = new ManagerMenuController();
-        GreetingMenuController sMenu = new GreetingMenuController();
+        GreetingMenuController greetingMenu = new GreetingMenuController();
 
         // Greeting
-        sMenu.display();
-        sMenu.runBySelecTion();
+        greetingMenu.runBySelecTion();
 
         System.out.println("Enter your Staff ID:");
+        System.out.println("(*NOTE: Manager Staff ID starts with 'M', Employee Staff ID starts with any other characters)");
         String employeeId = scanner.nextLine();
         EmployeeType role = roleCheck(employeeId);
         switch (role) {

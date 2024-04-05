@@ -29,34 +29,39 @@ public class EmployeeMenuController implements ActionForMenu {
     @Override
     public void runBySelecTion() {
         while (true){
-            display();
-            int selection = Integer.parseInt(scanner.nextLine());
-            switch (selection){
-                case 0:
-                    System.exit(0);
-                    break;
-                case 1:
-                    productMenu.runBySelecTion();
-                    break;
-                case 2:
-                    categoryMenu.runBySelecTion();
-                    break;
-                case 3:
-                    customerMenu.runBySelecTion();
-                    break;
-                case 4:
-                    orderMenu.runBySelecTion();
-                    break;
-                case 5:
-                    storeMenu.runBySelecTion();
-                    break;
-                case 6:
-                    facade.displayProductAndCategory();
-                    break;
-                default:
-                    System.out.println("WARNING: Invalid option. Please re-enter: ");
-                    break;
+            try{
+                display();
+                int selection = Integer.parseInt(scanner.nextLine());
+                switch (selection){
+                    case 0:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        productMenu.runBySelecTion();
+                        break;
+                    case 2:
+                        categoryMenu.runBySelecTion();
+                        break;
+                    case 3:
+                        customerMenu.runBySelecTion();
+                        break;
+                    case 4:
+                        orderMenu.runBySelecTion();
+                        break;
+                    case 5:
+                        storeMenu.runBySelecTion();
+                        break;
+                    case 6:
+                        facade.displayProductAndCategory();
+                        break;
+                    default:
+                        System.out.println("WARNING: Invalid option. Please re-enter: ");
+                        break;
+                    }
+            } catch (NumberFormatException ignored){
+                System.out.println("WARNING: Invalid option. Please re-enter: ");
             }
         }
     }
 }
+

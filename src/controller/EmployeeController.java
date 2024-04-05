@@ -31,7 +31,6 @@ public class EmployeeController implements ActionForModel, ValidationTool {
         Employee newEmployee = new Employee(id,role);
         employees.add(newEmployee);
         System.out.println("ADDED SUCCESSFULLY!");
-        System.out.println(newEmployee);
     }
 
     @Override

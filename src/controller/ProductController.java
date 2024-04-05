@@ -10,6 +10,13 @@ import java.util.Scanner;
 public class ProductController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Product> products = new ArrayList<>();
+    public ProductController(){
+        products.add(new Product(1, "Apple","bycicle"));
+        products.add(new Product(2, "Electroluc","phone"));
+        products.add(new Product(3, "Toshiba","fridge"));
+        products.add(new Product(4, "Sharp","TV"));
+        products.add(new Product(5, "LG","laptop"));
+    }
 
     @Override
     public void display() {
@@ -85,6 +92,15 @@ public class ProductController implements ActionForModel, ValidationTool {
             System.out.println("PRODUCT NOT FOUND!");
         }
     }
+    public void getNameById(int id){
+        for (Product product: products) {
+            if (product.getId() == id) {
+                System.out.println("FOUND! " + product);
+            } else {
+                System.out.println("PRODUCT NOT FOUND!");
+            }
+        }
+    }
 
     @Override
     public void writeToFile() {
@@ -96,5 +112,8 @@ public class ProductController implements ActionForModel, ValidationTool {
     public void readFromFile() {
         System.out.println("------READ FROM FILE------");
 
+    }
+    public List<Product> getProductList() {
+        return products;
     }
 }

@@ -1,7 +1,5 @@
 package view;
 
-import controller.CustomerController;
-import controller.OrderController;
 import controller.menu.employeeMenu.EmployeeMenuController;
 import controller.menu.managerMenu.ManagerMenuController;
 import controller.menu.greetingMenu.GreetingMenuController;
@@ -15,10 +13,6 @@ public class StoreManager {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        CustomerController customer = new CustomerController();
-        OrderController order = new OrderController();
-        Store storeHN = new StoreHN();
-        Store storeHCM = new StoreHCM();
         EmployeeMenuController eMenu = new EmployeeMenuController();
         ManagerMenuController mMenu = new ManagerMenuController();
         GreetingMenuController sMenu = new GreetingMenuController();

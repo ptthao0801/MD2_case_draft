@@ -1,10 +1,14 @@
 package controller.menu.managerMenu;
 
+import controller.OrderController;
+import controller.facade.Facade;
 import controller.menu.ActionForMenu;
 
 import java.util.Scanner;
 
 public class ManagerMenuController implements ActionForMenu {
+    OrderController orderController = new OrderController();
+    Facade facade = new Facade();
     ManageEmployee employeeMenu = new ManageEmployee();
     Scanner scanner = new Scanner(System.in);
     @Override
@@ -12,9 +16,8 @@ public class ManagerMenuController implements ActionForMenu {
         System.out.println("------MENU FOR MANAGER------");
         System.out.println("0. Exit");
         System.out.println("1. Manage Employees");
-        System.out.println("2. Check Top 5 Products by Sales");
-        System.out.println("3. Check Top 5 Customers by Order Values");
-        System.out.println("4. Remove all Products");
+        System.out.println("2. Show Total Sales Value by Product ID");
+        System.out.println("3. Check Top 10 Products by Sales Value");
         System.out.println("-------------> Enter your selection: ");
     }
 
@@ -32,10 +35,10 @@ public class ManagerMenuController implements ActionForMenu {
                     employeeMenu.runBySelecTion();
                     break;
                 case 2:
-
+                    orderController.getOrderValueByIdList();
                     break;
                 case 3:
-
+                    facade.getTop10Products();
                     break;
                 case 4:
                     break;

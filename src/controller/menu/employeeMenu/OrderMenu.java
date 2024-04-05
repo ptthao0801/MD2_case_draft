@@ -19,6 +19,7 @@ public class OrderMenu implements ActionForMenu {
         System.out.println("5. Write to File");
         System.out.println("6. Read from File");
         System.out.println("7. Back");
+        System.out.println("8. LIST ORDER VALUE");
         System.out.println("-------------> Enter your selection: ");
     }
 
@@ -52,6 +53,9 @@ public class OrderMenu implements ActionForMenu {
                 break;
             case 7:
                 exit = true;
+                break;
+            case 8:
+                order.getOrderValueByIdList();
                 break;
             default:
                 System.out.println("WARNING: INVALID OPTION. Please re-enter: ");

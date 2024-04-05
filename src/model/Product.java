@@ -5,10 +5,21 @@ public class Product {
     private String name;
     private String category;
 
+    private double totalValueByProductId;
+
     public Product(int id, String name, String category) {
         this.id = id;
         this.name = name;
         this.category = category;
+    }
+
+    public Product(int id, double totalValueByProductId) {
+        this.id = id;
+        this.totalValueByProductId = totalValueByProductId;
+    }
+
+    public Product(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -33,6 +44,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public double getTotalValueByProductId() {
+        return totalValueByProductId;
+    }
+
+    public void setTotalValueByProductId(double totalValueByProductId) {
+        this.totalValueByProductId = totalValueByProductId;
     }
 
     @Override

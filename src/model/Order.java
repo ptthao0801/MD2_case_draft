@@ -1,7 +1,9 @@
 package model;
 
 
-public class Order implements Comparable<Order>{
+import java.io.Serializable;
+
+public class Order implements Comparable<Order>, Serializable {
     private int idOrder;
     private double price;
     private int quantity;

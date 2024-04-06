@@ -1,8 +1,12 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Category;
 import model.Customer;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -105,6 +109,19 @@ public class CustomerController implements ActionForModel, ValidationTool {
     @Override
     public void writeToFile() {
         System.out.println("------WRITE TO FILE------");
+        ObjectOutputStream oos = null;
+        String path = "customer.txt";
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            oos = new ObjectOutputStream(fos);
+            for (Customer customer : customers) {
+                oos.writeObject(customer);
+                oos.close();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("DONE WRITING TO FILE "+ path);
 
     }
 

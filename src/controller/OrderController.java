@@ -1,9 +1,13 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Employee;
 import model.Order;
 import model.Product;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 
@@ -136,7 +140,19 @@ public class OrderController implements ActionForModel, ValidationTool {
     @Override
     public void writeToFile() {
         System.out.println("------WRITE TO FILE------");
-
+        ObjectOutputStream oos = null;
+        String path = "order.txt";
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            oos = new ObjectOutputStream(fos);
+            for (Order order : orders) {
+                oos.writeObject(order);
+                oos.close();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("DONE WRITING TO FILE "+ path);
     }
 
     @Override

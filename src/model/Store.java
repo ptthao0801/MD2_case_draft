@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Store {
+import java.io.Serializable;
+
+public abstract class Store implements Serializable {
     private int id;
     public final String name = "ZARA";
     public Store() {

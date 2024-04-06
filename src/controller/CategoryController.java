@@ -6,6 +6,9 @@ import model.Order;
 import model.Product;
 import model.Store;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -88,7 +91,20 @@ public class CategoryController implements ActionForModel, ValidationTool {
 
     @Override
     public void writeToFile() {
-
+        System.out.println("------WRITE TO FILE------");
+        ObjectOutputStream oos = null;
+        String path = "category.txt";
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            oos = new ObjectOutputStream(fos);
+            for (Category category : categories) {
+                oos.writeObject(category);
+                oos.close();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("DONE WRITING TO FILE "+ path);
     }
 
     @Override

@@ -95,6 +95,7 @@ public class OrderController implements ActionForModel, ValidationTool {
         Order newOrder = new Order(id, price, quantity,idCustomer,idProduct);
         orders.add(newOrder);
         System.out.println("ADDED SUCCESSFULLY!");
+        System.out.println(newOrder);
     }
 
     @Override
@@ -155,7 +156,7 @@ public class OrderController implements ActionForModel, ValidationTool {
         System.out.println("DONE WRITING TO FILE "+ path);
     }
 
-    @Override
+//    @Override
     public void readFromFile() {
         System.out.println("------READ FROM FILE------");
 

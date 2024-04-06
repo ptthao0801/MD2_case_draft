@@ -25,4 +25,12 @@ public abstract class Store implements Serializable {
     }
 
     public void greeting(){}
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

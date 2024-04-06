@@ -31,6 +31,7 @@ public class EmployeeController implements ActionForModel, ValidationTool {
         Employee newEmployee = new Employee(id,role);
         employees.add(newEmployee);
         System.out.println("ADDED SUCCESSFULLY!");
+        System.out.println(newEmployee);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class EmployeeController implements ActionForModel, ValidationTool {
         System.out.println("DONE WRITING TO FILE "+ path);
     }
 
-    @Override
+//    @Override
     public void readFromFile() {
 
     }

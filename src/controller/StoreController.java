@@ -3,9 +3,7 @@ package controller;
 import controller.validation.ValidationTool;
 import model.*;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +11,8 @@ import java.util.Scanner;
 public class StoreController implements ActionForModel, ValidationTool {
     List<Store> stores = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    String path = "store.txt";
+
     @Override
     public void display() {
         System.out.println("------DISPLAY STORE------");
@@ -137,8 +137,9 @@ public class StoreController implements ActionForModel, ValidationTool {
             oos = new ObjectOutputStream(fos);
             for (Store store : stores) {
                 oos.writeObject(store);
-                oos.close();
             }
+            fos.close();
+            oos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -147,6 +148,29 @@ public class StoreController implements ActionForModel, ValidationTool {
 
 //    @Override
     public void readFromFile() {
-
+        List<Store> readStores = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(path);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Store store = (Store) ois.readObject();
+                    if (store != null) {
+                        readStores.add(store);
+                    } else {
+                        break;
+                    }
+                } catch (EOFException e) {
+                    // Đọc đến cuối file
+                    break;
+                }
+            }
+            System.out.println("DONE READING FROM FILE " + path);
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        List<Store> storeDataFromFile = readStores;
+        for (Store store : storeDataFromFile){
+            System.out.println(store);
+        }
     }
 }

@@ -21,7 +21,6 @@ public class CategoryMenu implements ActionForMenu {
         System.out.println("7. Back");
         System.out.println("-------------> Enter your selection: ");
     }
-
     @Override
     public void runBySelecTion() {
         boolean exit = false;

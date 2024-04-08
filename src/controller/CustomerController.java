@@ -4,9 +4,7 @@ import controller.validation.ValidationTool;
 import model.Category;
 import model.Customer;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +15,8 @@ import static controller.validation.ValidationTool.phoneValidation;
 public class CustomerController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Customer> customers = new ArrayList<>();
+    String path = "customer.txt";
+
     @Override
     public void add() {
         System.out.println("------ADD CUSTOMER------");
@@ -110,14 +110,14 @@ public class CustomerController implements ActionForModel, ValidationTool {
     public void writeToFile() {
         System.out.println("------WRITE TO FILE------");
         ObjectOutputStream oos = null;
-        String path = "customer.txt";
         try {
             FileOutputStream fos = new FileOutputStream(path);
             oos = new ObjectOutputStream(fos);
             for (Customer customer : customers) {
                 oos.writeObject(customer);
-                oos.close();
             }
+            fos.close();
+            oos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -128,7 +128,30 @@ public class CustomerController implements ActionForModel, ValidationTool {
 //    @Override
     public void readFromFile() {
         System.out.println("------READ FROM FILE------");
-
+        List<Customer> readCustomers = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(path);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Customer customer = (Customer) ois.readObject();
+                    if (customer != null) {
+                        readCustomers.add(customer);
+                    } else {
+                        break;
+                    }
+                } catch (EOFException e) {
+                    // Đọc đến cuối file
+                    break;
+                }
+            }
+            System.out.println("DONE READING FROM FILE " + path);
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        List<Customer> customerDataFromFile = readCustomers;
+        for (Customer customer : customerDataFromFile){
+            System.out.println(customer);
+        }
     }
 
     @Override

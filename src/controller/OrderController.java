@@ -1,13 +1,12 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Customer;
 import model.Employee;
 import model.Order;
 import model.Product;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 
@@ -16,6 +15,8 @@ public class OrderController implements ActionForModel, ValidationTool {
     List<Order> orders = new ArrayList<>();
     List<Product> topProducts = new ArrayList<>();
     Set<Integer> idProductSet = new HashSet<>();
+    String path = "order.txt";
+
 
     public OrderController(){
         orders.add(new Order(1,45,50,34,1));
@@ -148,8 +149,9 @@ public class OrderController implements ActionForModel, ValidationTool {
             oos = new ObjectOutputStream(fos);
             for (Order order : orders) {
                 oos.writeObject(order);
-                oos.close();
             }
+            fos.close();
+            oos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -159,7 +161,30 @@ public class OrderController implements ActionForModel, ValidationTool {
 //    @Override
     public void readFromFile() {
         System.out.println("------READ FROM FILE------");
-
+        List<Order> readOrders = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(path);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Order order = (Order) ois.readObject();
+                    if (order != null) {
+                        readOrders.add(order);
+                    } else {
+                        break;
+                    }
+                } catch (EOFException e) {
+                    // Đọc đến cuối file
+                    break;
+                }
+            }
+            System.out.println("DONE READING FROM FILE " + path);
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        List<Order> orderDataFromFile = readOrders;
+        for (Order order : orderDataFromFile){
+            System.out.println(order);
+        }
     }
     public List<Product> getOrderValueByIdList() {
 

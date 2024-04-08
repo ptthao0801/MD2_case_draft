@@ -3,9 +3,7 @@ package controller;
 import controller.validation.ValidationTool;
 import model.*;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +11,8 @@ import java.util.Scanner;
 public class EmployeeController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Employee> employees = new ArrayList<>();
+    String path = "employee.txt";
+
     @Override
     public void display() {
         System.out.println("------DISPLAY EMPLOYEEE------");
@@ -84,8 +84,9 @@ public class EmployeeController implements ActionForModel, ValidationTool {
             oos = new ObjectOutputStream(fos);
             for (Employee employee : employees) {
                 oos.writeObject(employee);
-                oos.close();
             }
+            fos.close();
+            oos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -94,7 +95,30 @@ public class EmployeeController implements ActionForModel, ValidationTool {
 
 //    @Override
     public void readFromFile() {
-
+        List<Employee> readEmployees = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(path);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Employee employee = (Employee) ois.readObject();
+                    if (employee != null) {
+                        readEmployees.add(employee);
+                    } else {
+                        break;
+                    }
+                } catch (EOFException e) {
+                    // Đọc đến cuối file
+                    break;
+                }
+            }
+            System.out.println("DONE READING FROM FILE " + path);
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        List<Employee> employeeDataFromFile = readEmployees;
+        for (Employee employee : employeeDataFromFile){
+            System.out.println(employee);
+        }
     }
     public static EmployeeType roleCheck(String employeeId){
         char firstChar = employeeId.charAt(0);

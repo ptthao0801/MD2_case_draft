@@ -104,51 +104,16 @@ public class CategoryController implements ActionForModel, ValidationTool {
             oos = new ObjectOutputStream(fos);
             for (Category category : categories) {
                 oos.writeObject(category);
-                fos.close();
-                oos.close();
             }
+            fos.close();
+            oos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         System.out.println("DONE WRITING TO FILE " + path);
     }
 
-    //    public List<Category> readFromFile() {
-////        System.out.println("------READ FROM FILE------");
-////        ObjectInputStream ois = null;
-////        List<Category> categories = new ArrayList<>();
-////        try {
-////            FileInputStream fis = new FileInputStream(path);
-////            ois = new ObjectInputStream(fis);
-////                categories = (List<Category>) ois.readObject();
-////                ois.close();
-////        } catch (IOException ex) {
-////            ex.printStackTrace();
-////        }
-////        System.out.println("DONE WRITING TO FILE "+ path);
-////        return categories;
-//
-//        // _________________________
-//        System.out.println("------READ FROM FILE------");
-//        List<Category> readCategories = new ArrayList<>();
-//        try (FileInputStream fis = new FileInputStream(path);
-//             ObjectInputStream ois = new ObjectInputStream(fis)) {
-//            while (true) {
-//                Category category = (Category) ois.readObject();
-//                if (category != null) {
-//                    readCategories.add(category);
-//                } else {
-//                    break;
-//                }
-//            }
-//            System.out.println("DONE READING FROM FILE " + path);
-//        } catch (IOException | ClassNotFoundException ex) {
-//            ex.printStackTrace();
-//        }
-//        return readCategories;
-//    }
-
-    public List<Category> readFromFile() {
+    public void readFromFile() {
         System.out.println("------READ FROM FILE------");
         List<Category> readCategories = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(path);
@@ -170,6 +135,9 @@ public class CategoryController implements ActionForModel, ValidationTool {
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        return readCategories;
+        List<Category> categoryDataFromFile = readCategories;
+        for (Category category : categoryDataFromFile){
+            System.out.println(category);
+        }
     }
 }

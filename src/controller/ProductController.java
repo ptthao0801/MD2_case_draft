@@ -1,12 +1,11 @@
 package controller;
 
 import controller.validation.ValidationTool;
+import model.Customer;
 import model.Order;
 import model.Product;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +13,8 @@ import java.util.Scanner;
 public class ProductController implements ActionForModel, ValidationTool {
     Scanner scanner = new Scanner(System.in);
     List<Product> products = new ArrayList<>();
+    String path = "product.txt";
+
     public ProductController(){
         products.add(new Product(1, "Apple","bycicle"));
         products.add(new Product(2, "Electrolux","phone"));
@@ -118,8 +119,10 @@ public class ProductController implements ActionForModel, ValidationTool {
             oos = new ObjectOutputStream(fos);
             for (Product product : products) {
                 oos.writeObject(product);
-                oos.close();
             }
+            fos.close();
+            oos.close();
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -129,7 +132,30 @@ public class ProductController implements ActionForModel, ValidationTool {
 //    @Override
     public void readFromFile() {
         System.out.println("------READ FROM FILE------");
-
+        List<Product> readProducts = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(path);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Product product = (Product) ois.readObject();
+                    if (product != null) {
+                        readProducts.add(product);
+                    } else {
+                        break;
+                    }
+                } catch (EOFException e) {
+                    // Đọc đến cuối file
+                    break;
+                }
+            }
+            System.out.println("DONE READING FROM FILE " + path);
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        List<Product> productDataFromFile = readProducts;
+        for (Product product : productDataFromFile){
+            System.out.println(product);
+        }
     }
     public List<Product> getProductList() {
         return products;

@@ -35,6 +35,16 @@ public class OrderController implements ActionForModel, ValidationTool {
         orders.add(new Order(1,100,1000,34,4));
 
         orders.add(new Order(1,10,600,34,5));
+
+//        orders.add(new Order(1,40,700,34,6));
+//
+//        orders.add(new Order(1,50,1100,34,7));
+//
+//        orders.add(new Order(1,100,600,34,8));
+//
+//        orders.add(new Order(1,1500,60,34,9));
+//
+//        orders.add(new Order(1,10,600,34,10));
     }
 
     @Override

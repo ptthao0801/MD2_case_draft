@@ -6,6 +6,6 @@ public interface ActionForModel {
     void remove();
     void search();
     void writeToFile();
-//    void readFromFile();
+    void readFromFile();
 
 }

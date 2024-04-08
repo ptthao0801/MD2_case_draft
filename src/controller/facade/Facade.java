@@ -27,8 +27,10 @@ public class Facade {
                 if (o.getId() == p.getId()){
                     System.out.println("Total Sales Value = " + o.getTotalValueByProductId() + ", ID = " + o.getId() + ", Product: " + p.getCategory() + " " + p.getName());
                 }
+//                else {
+//                    System.out.println("Missing category ID "+o.getId()+". Please add category.");
+//                }
             }
-
         }
     }
 

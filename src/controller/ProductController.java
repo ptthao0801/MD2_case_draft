@@ -41,8 +41,6 @@ public class ProductController implements ActionForModel, ValidationTool {
                 id = Integer.parseInt(scanner.nextLine());
                 if (ValidationTool.idValidation(id)) {
                     break;
-                } else {
-                    System.out.println("ID must be a positive number. Please re-enter: ");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. ID must be a number. Please re-enter: ");
